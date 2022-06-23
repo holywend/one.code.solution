@@ -2,41 +2,31 @@ import { Fragment, SetStateAction, useEffect } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import { useState } from "react";
-import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/solid";
 import Pagination from "./Pagination";
 import Posts from "./Posts";
+import { useParams } from "react-router-dom";
 
 const logout = () => {
   localStorage.removeItem("user");
   window.location.reload();
 };
 
-const Dashboard = () => {
-  const user = JSON.parse(localStorage.getItem("user") || "{}");
-  const [posts, setPosts] = useState([]);
-  const [users, setUsers] = useState([]);
+const Dashboard = ({
+  user,
+  posts,
+  loading,
+}: {
+  user: any;
+  posts: any[];
+  loading: boolean;
+}) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(10);
-  const [loading, setLoading] = useState(true);
-
-  const getApiData = async () => {
-    setLoading(true);
-    await fetch("https://jsonplaceholder.typicode.com/users")
-      .then((res) => res.json())
-      .then((res) => setUsers(res));
-    fetch("https://jsonplaceholder.typicode.com/posts")
-      .then((res) => res.json())
-      .then((res) => setPosts(res));
-    setLoading(false);
-  };
-
-  useEffect(() => {
-    getApiData();
-  }, []);
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+  const params = useParams();
 
   const paginate = (pageNumber: SetStateAction<number>) =>
     setCurrentPage(pageNumber);
@@ -60,7 +50,7 @@ const Dashboard = () => {
                         </span>
                       </div>
                     </div>
-                    <div className="flex lg:hidden">
+                    <div className="flex sm:hidden">
                       {/* Mobile menu button */}
                       <Disclosure.Button className="bg-indigo-600 p-2 rounded-md inline-flex items-center justify-center text-indigo-200 hover:text-white hover:bg-indigo-500 hover:bg-opacity-75 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-indigo-600 focus:ring-white">
                         <span className="sr-only">Open main menu</span>
@@ -74,7 +64,7 @@ const Dashboard = () => {
                         )}
                       </Disclosure.Button>
                     </div>
-                    <div className="hidden lg:block lg:ml-4">
+                    <div className="hidden sm:block lg:ml-4">
                       <div className="flex items-center">
                         {/* Profile dropdown */}
                         <Menu as="div" className="ml-3 relative flex-shrink-0">
@@ -124,7 +114,7 @@ const Dashboard = () => {
                   </div>
                 </div>
 
-                <Disclosure.Panel className="lg:hidden">
+                <Disclosure.Panel className="sm:hidden">
                   <div className="px-2 pt-2 pb-3 space-y-1"></div>
                   <div className="pt-4 pb-3 border-t border-indigo-700">
                     <div className="px-5 flex items-center">
@@ -161,7 +151,9 @@ const Dashboard = () => {
           </Disclosure>
           <header className="py-4">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <h1 className="text-2xl font-bold text-white text-center">Post</h1>
+              <h1 className="text-2xl font-bold text-white text-center">
+                Post
+              </h1>
             </div>
           </header>
         </div>
@@ -170,13 +162,19 @@ const Dashboard = () => {
           <div className="max-w-7xl mx-auto pb-12 px-4 sm:px-6 lg:px-8">
             {/* Replace with your content */}
             <div className="bg-white rounded-lg shadow px-5 py-6 sm:px-6">
-              <Posts posts={currentPosts} users={users} loading={loading} />
-              <Pagination
-                postsPerPage={postsPerPage}
-                totalPosts={posts.length}
-                paginate={paginate}
-                currentPage={currentPage}
-              />
+              {params.id ? (
+                <Posts posts={currentPosts} loading={loading} id={params.id} />
+              ) : (
+                <>
+                  <Posts posts={currentPosts} loading={loading} />
+                  <Pagination
+                    postsPerPage={postsPerPage}
+                    totalPosts={posts.length}
+                    paginate={paginate}
+                    currentPage={currentPage}
+                  />
+                </>
+              )}
             </div>
             {/* /End replace */}
           </div>
