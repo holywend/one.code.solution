@@ -1,3 +1,9 @@
+import {
+  ChevronDoubleLeftIcon,
+  ChevronDoubleRightIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+} from "@heroicons/react/solid";
 import React from "react";
 
 export default function Pagination({
@@ -35,26 +41,28 @@ export default function Pagination({
       </div>
       <nav className="block">
         <ul className="flex justify-center pl-0 rounded list-none flex-wrap">
-          <li>
+          <li className="flex">
             {currentPage > 1 ? (
               <>
                 <a
                   onClick={() => {
                     paginate(1);
                   }}
+                  title="First"
                   href="#"
                   className="bg-white border-gray-300 text-gray-500 hover:bg-blue-200 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
                 >
-                  First
+                  <ChevronDoubleLeftIcon className="relative my-auto w-6 h-6" />
                 </a>
                 <a
                   onClick={() => {
                     paginate(currentPage - 1);
                   }}
+                  title="Previous"
                   href="#"
                   className="bg-white border-gray-300 text-gray-500 hover:bg-blue-200 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
                 >
-                  Prev
+                  <ChevronLeftIcon className="relative w-6 h-6" />
                 </a>
               </>
             ) : (
@@ -72,8 +80,8 @@ export default function Pagination({
                     href="#"
                     className={
                       currentPage === number
-                        ? "bg-blue border-red-300 text-red-500 hover:bg-blue-200 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
-                        : "bg-white border-gray-300 text-gray-500 hover:bg-blue-200 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
+                        ? "bg-blue border-red-300 text-red-500 hover:bg-blue-200 relative inline-flex items-center px-4 py-2 border text-sm font-medium h-full"
+                        : "bg-white border-gray-300 text-gray-500 hover:bg-blue-200 relative inline-flex items-center px-4 py-2 border text-sm font-medium h-full"
                     }
                   >
                     {number}
@@ -89,19 +97,21 @@ export default function Pagination({
                   onClick={() => {
                     paginate(currentPage + 1);
                   }}
+                  title="Next"
                   href="#"
                   className="bg-white border-gray-300 text-gray-500 hover:bg-blue-200 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
                 >
-                  Next
+                  <ChevronRightIcon className="relative w-6 h-6" />
                 </a>
                 <a
                   onClick={() => {
                     paginate(pageNumbers.length);
                   }}
+                  title="Last"
                   href="#"
                   className="bg-white border-gray-300 text-gray-500 hover:bg-blue-200 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
                 >
-                  Last
+                  <ChevronDoubleRightIcon className="relative w-6 h-6" />
                 </a>
               </>
             ) : (

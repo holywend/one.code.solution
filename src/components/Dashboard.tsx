@@ -5,6 +5,13 @@ import { useState } from "react";
 import Pagination from "./Pagination";
 import Posts from "./Posts";
 import { useParams } from "react-router-dom";
+import Profile from "./Profile";
+
+const navigation = [
+  { name: "Dashboard", href: "/" },
+  { name: "Post", href: "/posts" },
+  // { name: "Profile", href: "/profile" },
+];
 
 const logout = () => {
   localStorage.removeItem("user");
@@ -17,7 +24,7 @@ const Dashboard = ({
   loading,
 }: {
   user: any;
-  posts: any[];
+  posts?: any[];
   loading: boolean;
 }) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -25,11 +32,15 @@ const Dashboard = ({
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+  const currentPosts = posts?.slice(indexOfFirstPost, indexOfLastPost);
   const params = useParams();
 
   const paginate = (pageNumber: SetStateAction<number>) =>
     setCurrentPage(pageNumber);
+
+  function classNames(...classes: string[]) {
+    return classes.filter(Boolean).join(" ");
+  }
 
   return (
     <>
@@ -44,12 +55,26 @@ const Dashboard = ({
                 <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
                   <div className="relative h-16 flex items-center justify-between lg:border-b lg:border-indigo-400 lg:border-opacity-25">
                     <div className="px-2 flex items-center lg:px-0">
-                      <div className="flex-shrink-0">
+                      <div className="hidden md:block flex-shrink-0">
                         <span className="text-3xl text-white font-bold">
                           One Code Solution
                         </span>
                       </div>
+                      <div className="block ml-4 lg:ml-10">
+                        <div className="flex space-x-4">
+                          {navigation.map((item) => (
+                            <a
+                              key={item.name}
+                              href={item.href}
+                              className="text-white hover:bg-indigo-500 hover:bg-opacity-75 rounded-md py-2 px-3 text-sm font-medium"
+                            >
+                              {item.name}
+                            </a>
+                          ))}
+                        </div>
+                      </div>
                     </div>
+
                     <div className="flex sm:hidden">
                       {/* Mobile menu button */}
                       <Disclosure.Button className="bg-indigo-600 p-2 rounded-md inline-flex items-center justify-center text-indigo-200 hover:text-white hover:bg-indigo-500 hover:bg-opacity-75 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-indigo-600 focus:ring-white">
@@ -152,7 +177,7 @@ const Dashboard = ({
           <header className="py-4">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <h1 className="text-2xl font-bold text-white text-center">
-                Post
+                {posts ? "Post" : "Profile"}
               </h1>
             </div>
           </header>
@@ -160,23 +185,25 @@ const Dashboard = ({
 
         <main className="-mt-32">
           <div className="max-w-7xl mx-auto pb-12 px-4 sm:px-6 lg:px-8">
-            {/* Replace with your content */}
             <div className="bg-white rounded-lg shadow px-5 py-6 sm:px-6">
-              {params.id ? (
-                <Posts
-                  posts={posts}
-                  loading={loading}
-                  id={params.id}
-                />
-              ) : (
+              {/* jika single post */}
+              {posts && params.postId ? (
+                <Posts posts={posts!} loading={loading} id={params.postId} />
+              ) : posts ? (
                 <>
-                  <Posts posts={currentPosts} loading={loading} />
+                  {/* jika multi post */}
+                  <Posts posts={currentPosts!} loading={loading} />
                   <Pagination
                     postsPerPage={postsPerPage}
-                    totalPosts={posts.length}
+                    totalPosts={posts!.length}
                     paginate={paginate}
                     currentPage={currentPage}
                   />
+                </>
+              ) : (
+                <>
+                  {/* jika profile */}
+                  <Profile user={user} loading={loading} />
                 </>
               )}
             </div>
