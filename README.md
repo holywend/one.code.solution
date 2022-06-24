@@ -27,14 +27,14 @@ Pembangunan aplikasi akan di minilkan dan nama file disisipkan dengan hash. Apli
 
 ## Login
 
-Untuk dapat mengakses aplikasi lakukan login dengan mengisikan username yang terdaftar pada [https://jsonplaceholder.typicode.com/Users]('Daftar User') dan masukkan password berupa username (password == username).
+Untuk dapat mengakses aplikasi lakukan login dengan mengisikan username yang terdaftar pada [Daftar User](https://jsonplaceholder.typicode.com/Users) dan masukkan password berupa username (password == username).
 
 ## Data
 
 Data yang digunakan untuk users, posts, dan comments terdapat pada link:
-- [https://jsonplaceholder.typicode.com/Users]('Daftar Users')
-- [https://jsonplaceholder.typicode.com/Posts]('Daftar Posts')
-- [https://jsonplaceholder.typicode.com/Comments]('Daftar Komentar')
+- [Daftar Users](https://jsonplaceholder.typicode.com/Users)
+- [Daftar Posting](https://jsonplaceholder.typicode.com/Posts)
+- [Daftar Komentar](https://jsonplaceholder.typicode.com/Comments)
 
 ## Learn More
 
