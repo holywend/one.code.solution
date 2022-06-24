@@ -27,7 +27,7 @@ Pembangunan aplikasi akan di minilkan dan nama file disisipkan dengan hash. Apli
 
 ## Login
 
-Untuk dapat mengakses aplikasi lakukan login dengan mengisikan username yang terdaftar pada [Daftar User](https://jsonplaceholder.typicode.com/Users) dan masukkan password berupa username (password == username).
+Untuk dapat mengakses aplikasi lakukan login dengan mengisikan **username** yang terdaftar pada [Daftar User](https://jsonplaceholder.typicode.com/Users) dan masukkan **password** berupa username (**password == username**).
 
 ## Data
 
