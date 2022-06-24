@@ -42,7 +42,7 @@ const Profile = ({ user, loading }: { user: any; loading: boolean }) => {
                 {user.address.street} {user.address.suite}
               </p>
               <p className="w-full">{user.address.city}</p>
-              <p> Zip {user.address.zipcode}</p>
+              <p>{user.address.zipcode}</p>
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 mb-4">
