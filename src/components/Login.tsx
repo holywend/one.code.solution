@@ -3,11 +3,13 @@ import { LockClosedIcon } from "@heroicons/react/solid";
 import toast from "react-hot-toast";
 const Login: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const auth = async () => {
-    console.log("auth", username, password);
+    // console.log("auth", username, password);
+    setLoading(true);
     const users = await fetch(
       "https://jsonplaceholder.typicode.com/users"
     ).then((res) => res.json());
@@ -16,7 +18,7 @@ const Login: React.FC = () => {
       if (user.username === username && user.username === password) {
         localStorage.setItem("user", JSON.stringify(user));
         setShowModal(false);
-        window.location.reload();
+        // window.location.reload();
         toast.success("Welcome back!");
         isAuthenticated = true;
       }
@@ -26,8 +28,22 @@ const Login: React.FC = () => {
       setPassword("");
       toast.error("Invalid username or password");
       console.log("login gagal");
+    }else{
+      window.location.reload();
     }
+    setLoading(false);
   };
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center my-8">
+        <div
+          className="spinner-border animate-spin inline-block w-48 h-48 border-4 rounded-full"
+          role="status"
+        ></div>
+      </div>
+    );
+  }
 
   return (
     <div className="bg-white">
