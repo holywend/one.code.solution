@@ -44,26 +44,24 @@ export default function Pagination({
           <li className="flex">
             {currentPage > 1 ? (
               <>
-                <a
+                <button
                   onClick={() => {
                     paginate(1);
                   }}
                   title="First"
-                  href="#"
                   className="bg-white border-gray-300 text-gray-500 hover:bg-blue-200 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
                 >
                   <ChevronDoubleLeftIcon className="relative my-auto w-6 h-6" />
-                </a>
-                <a
+                </button>
+                <button
                   onClick={() => {
                     paginate(currentPage - 1);
                   }}
                   title="Previous"
-                  href="#"
                   className="bg-white border-gray-300 text-gray-500 hover:bg-blue-200 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
                 >
                   <ChevronLeftIcon className="relative w-6 h-6" />
-                </a>
+                </button>
               </>
             ) : (
               ""
@@ -72,12 +70,11 @@ export default function Pagination({
             {pageNumbers.map((number) => {
               if (number >= currentPage - 1 && number <= currentPage + 1) {
                 return (
-                  <a
+                  <button
                     key={number}
                     onClick={() => {
                       paginate(number);
                     }}
-                    href="#"
                     className={
                       currentPage === number
                         ? "bg-blue border-red-300 text-red-500 hover:bg-blue-200 relative inline-flex items-center px-4 py-2 border text-sm font-medium h-full"
@@ -85,7 +82,7 @@ export default function Pagination({
                     }
                   >
                     {number}
-                  </a>
+                  </button>
                 );
               } else {
                 return "";
@@ -93,26 +90,24 @@ export default function Pagination({
             })}
             {currentPage < pageNumbers.length ? (
               <>
-                <a
+                <button
                   onClick={() => {
                     paginate(currentPage + 1);
                   }}
                   title="Next"
-                  href="#"
                   className="bg-white border-gray-300 text-gray-500 hover:bg-blue-200 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
                 >
                   <ChevronRightIcon className="relative w-6 h-6" />
-                </a>
-                <a
+                </button>
+                <button
                   onClick={() => {
                     paginate(pageNumbers.length);
                   }}
                   title="Last"
-                  href="#"
                   className="bg-white border-gray-300 text-gray-500 hover:bg-blue-200 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
                 >
                   <ChevronDoubleRightIcon className="relative w-6 h-6" />
-                </a>
+                </button>
               </>
             ) : (
               ""

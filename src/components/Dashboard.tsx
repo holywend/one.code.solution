@@ -1,4 +1,4 @@
-import { Fragment, SetStateAction, useEffect } from "react";
+import { Fragment, SetStateAction } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import { useState } from "react";
@@ -38,9 +38,9 @@ const Dashboard = ({
   const paginate = (pageNumber: SetStateAction<number>) =>
     setCurrentPage(pageNumber);
 
-  function classNames(...classes: string[]) {
-    return classes.filter(Boolean).join(" ");
-  }
+  // function classNames(...classes: string[]) {
+  //   return classes.filter(Boolean).join(" ");
+  // }
 
   return (
     <>
@@ -117,19 +117,18 @@ const Dashboard = ({
                               <Menu.Item>
                                 <a
                                   href="/profile"
-                                  className="bg-gray-100 block py-2 px-4 text-sm text-gray-700"
+                                  className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-200 w-full"
                                 >
                                   Profile
                                 </a>
                               </Menu.Item>
                               <Menu.Item>
-                                <a
-                                  href="#"
+                                <button
                                   onClick={() => logout()}
-                                  className="bg-gray-100 block py-2 px-4 text-sm text-gray-700"
+                                  className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-200 w-full text-left"
                                 >
                                   Logout
-                                </a>
+                                </button>
                               </Menu.Item>
                             </Menu.Items>
                           </Transition>

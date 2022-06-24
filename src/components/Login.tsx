@@ -14,6 +14,7 @@ const Login: React.FC = () => {
       "https://jsonplaceholder.typicode.com/users"
     ).then((res) => res.json());
     let isAuthenticated = false;
+    // temukan data user sesuai dengan username yg diisi
     users.forEach((user: { username: string }) => {
       if (user.username === username && user.username === password) {
         localStorage.setItem("user", JSON.stringify(user));
@@ -27,7 +28,7 @@ const Login: React.FC = () => {
       setUsername("");
       setPassword("");
       toast.error("Invalid username or password");
-      console.log("login gagal");
+      // console.log("login gagal");
     }else{
       window.location.reload();
     }

@@ -1,8 +1,6 @@
-import { AnnotationIcon, ChevronLeftIcon } from "@heroicons/react/solid";
-import { useState } from "react";
+import { ChevronLeftIcon } from "@heroicons/react/solid";
 
 const Profile = ({ user, loading }: { user: any; loading: boolean }) => {
-  const [showComment, setShowComment] = useState(false);
 
   if (loading) {
     return (

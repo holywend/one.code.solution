@@ -90,7 +90,7 @@ const Posts = ({
   } else {
     return (
       <section id="posts" className="flow-root mt-6">
-        <ul role="list" className="divide-y divide-gray-200">
+        <ul className="divide-y divide-gray-200">
           {posts.map((post) => {
             return (
               <li key={post.id} className="py-5">
