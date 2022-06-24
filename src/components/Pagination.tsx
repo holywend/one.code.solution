@@ -36,17 +36,31 @@ export default function Pagination({
       <nav className="block">
         <ul className="flex justify-center pl-0 rounded list-none flex-wrap">
           <li>
-            <a
-              onClick={() => {
-                currentPage == 1
-                  ? paginate(currentPage)
-                  : paginate(currentPage - 1);
-              }}
-              href="#"
-              className="bg-white border-gray-300 text-gray-500 hover:bg-blue-200 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
-            >
-              Prev
-            </a>
+            {currentPage > 1 ? (
+              <>
+                <a
+                  onClick={() => {
+                    paginate(1);
+                  }}
+                  href="#"
+                  className="bg-white border-gray-300 text-gray-500 hover:bg-blue-200 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
+                >
+                  First
+                </a>
+                <a
+                  onClick={() => {
+                    paginate(currentPage - 1);
+                  }}
+                  href="#"
+                  className="bg-white border-gray-300 text-gray-500 hover:bg-blue-200 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
+                >
+                  Prev
+                </a>
+              </>
+            ) : (
+              ""
+            )}
+
             {pageNumbers.map((number) => {
               if (number >= currentPage - 1 && number <= currentPage + 1) {
                 return (
@@ -69,17 +83,30 @@ export default function Pagination({
                 return "";
               }
             })}
-            <a
-              onClick={() => {
-                currentPage == pageNumbers.length
-                  ? paginate(currentPage)
-                  : paginate(currentPage + 1);
-              }}
-              href="#"
-              className="bg-white border-gray-300 text-gray-500 hover:bg-blue-200 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
-            >
-              Next
-            </a>
+            {currentPage < pageNumbers.length ? (
+              <>
+                <a
+                  onClick={() => {
+                    paginate(currentPage + 1);
+                  }}
+                  href="#"
+                  className="bg-white border-gray-300 text-gray-500 hover:bg-blue-200 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
+                >
+                  Next
+                </a>
+                <a
+                  onClick={() => {
+                    paginate(pageNumbers.length);
+                  }}
+                  href="#"
+                  className="bg-white border-gray-300 text-gray-500 hover:bg-blue-200 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
+                >
+                  Last
+                </a>
+              </>
+            ) : (
+              ""
+            )}
           </li>
         </ul>
       </nav>

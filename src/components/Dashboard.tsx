@@ -46,7 +46,7 @@ const Dashboard = ({
                     <div className="px-2 flex items-center lg:px-0">
                       <div className="flex-shrink-0">
                         <span className="text-3xl text-white font-bold">
-                          Cinta Coding
+                          One Code Solution
                         </span>
                       </div>
                     </div>
@@ -163,7 +163,11 @@ const Dashboard = ({
             {/* Replace with your content */}
             <div className="bg-white rounded-lg shadow px-5 py-6 sm:px-6">
               {params.id ? (
-                <Posts posts={currentPosts} loading={loading} id={params.id} />
+                <Posts
+                  posts={posts}
+                  loading={loading}
+                  id={params.id}
+                />
               ) : (
                 <>
                   <Posts posts={currentPosts} loading={loading} />

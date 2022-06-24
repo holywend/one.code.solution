@@ -49,6 +49,7 @@ const Home = () => {
         `https://jsonplaceholder.typicode.com/posts/${post.id}/comments`
       );
       post.comments = await resComments.json();
+      post.commentsCount = post.comments.length;
       return post;
     });
     console.log("dataPosts", dataPosts);
