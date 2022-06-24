@@ -131,7 +131,8 @@ const Login: React.FC = () => {
 
                     <div className="text-sm">
                       <a
-                        href="#"
+                        href="https://jsonplaceholder.typicode.com/Users"
+                        rel="noopener noreferrer"
                         className="font-medium text-indigo-600 hover:text-indigo-500"
                       >
                         Forgot your password?
@@ -140,9 +141,7 @@ const Login: React.FC = () => {
                   </div>
 
                   <div>
-                    <a
-                      // type="submit"
-                      href="#"
+                    <button
                       className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                       onClick={() => auth()}
                     >
@@ -153,7 +152,7 @@ const Login: React.FC = () => {
                         />
                       </span>
                       Login
-                    </a>
+                    </button>
                   </div>
                 </form>
               </div>
