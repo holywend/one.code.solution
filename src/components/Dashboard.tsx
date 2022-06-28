@@ -15,7 +15,7 @@ const navigation = [
 
 const logout = () => {
   localStorage.removeItem("user");
-  window.location.reload();
+  window.location.href = '/';
 };
 
 const Dashboard = ({
@@ -28,7 +28,7 @@ const Dashboard = ({
   loading: boolean;
 }) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(10);
+  const [postsPerPage] = useState(8);
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;

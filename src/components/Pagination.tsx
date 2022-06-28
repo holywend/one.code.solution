@@ -30,10 +30,10 @@ export default function Pagination({
           Showing
           <span className="font-medium">
             {" "}
-            {currentPage * postsPerPage - 10}{" "}
+            {(currentPage-1) * postsPerPage + 1}{" "}
           </span>
           to
-          <span className="font-medium"> {currentPage * postsPerPage} </span>
+          <span className="font-medium"> {(totalPosts > currentPage * postsPerPage ) ? currentPage * postsPerPage : totalPosts } </span>
           of
           <span className="font-medium"> {totalPosts} </span>
           results

@@ -47,7 +47,7 @@ const Posts = ({
                 <AnnotationIcon className="w-6 h-6 mr-2" />
                 <span className="text-blue-600">
                   <button onClick={() => setShowComment(!showComment)}>
-                    Shows ({post.comments && post.comments.length}) Comments
+                    {showComment ? "Hide" : "Shows" } ({post.comments && post.comments.length}) Comments
                   </button>
                 </span>
               </div>
